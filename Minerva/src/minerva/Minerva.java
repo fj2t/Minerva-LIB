@@ -9,7 +9,6 @@ import Protocol.Protocol;
 import Protocol.ProtocolException;
 import Protocol.ProtocolTocotocException;
 import Protocol.ServerResponse;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -64,13 +63,11 @@ public class Minerva extends ClientApplication implements ActionListener {
         String sessionId = null;
         setSessionId(null);
         Protocol login = new Protocol(MessageType.LOGIN, this);
-        System.out.println("1");
         try {
             if (login.tocTocRequest()) {
-                System.out.println("2");
                 try {
                     login.sendClientRequest(new ClientRequest(new ClientLoginData(userName, password).toJSONString(), this.getSoftwareID()).toJSONString());
-                    System.out.println("3");
+                    
                     ServerResponse response = login.getServerResponse();
                     switch (response.getResponseError()) {
                         case NO_ERROR: {
